@@ -1,0 +1,103 @@
+body {
+  background-color: #000; /* dark background to make the loading effect pop */
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* adjust this value to center the text vertically */
+  background-color: rgba(0, 0, 0, 0.5); /* add a dark overlay to enhance the effect */
+  padding: 20px; /* add some padding to create a sense of depth */
+  border-radius: 10px; /* add a subtle border radius to the container */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* add a subtle box shadow to create depth */
+}
+
+.loading-circle {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #333; /* add a dark background to the circle */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* add a subtle box shadow to the circle */
+}
+
+.loading-circle::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 10px solid #333; /* change the border color to match the circle's background */
+  border-top: 10px solid #fff; /* keep the top border white for contrast */
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+}
+
+.loading-text {
+  font-size: 36px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  text-align: center; /* center the text horizontally */
+  position: relative; /* add this to make the text stay in place */
+  z-index: 1; /* add this to make the text on top of the circle */
+  color: #fff; /* change the text color to white for better contrast */
+}
+
+.loading-text span {
+  animation: rainbow-loading 2s infinite;
+  display: inline-block;
+  transform-origin: 50% 50%;
+}
+
+.loading-text span:nth-child(1) {
+  animation-delay: 0s;
+}
+.loading-text span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.loading-text span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.loading-text span:nth-child(4) {
+  animation-delay: 0.6s;
+}
+.loading-text span:nth-child(5) {
+  animation-delay: 0.8s;
+}
+.loading-text span:nth-child(6) {
+  animation-delay: 1s;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rainbow-loading {
+  0% {
+    color: #ff69b4;
+    transform: scale(1.2);
+  }
+  25% {
+    color: #33cc33;
+    transform: scale(1);
+  }
+  50% {
+    color: #0066ff;
+    transform: scale(1.2);
+  }
+  75% {
+    color: #ffff00;
+    transform: scale(1);
+  }
+  100% {
+    color: #ff69b4;
+    transform: scale(1.2);
+  }
+}

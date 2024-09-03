@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loader</title>
+    <style>
+      body {
+        background-color: #000; /* Black background */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .loader {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .circle {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #fff; /* White */
+      }
+
+      .circle:nth-child(1) {
+        top: 0;
+        left: 0;
+        animation: moveFromTopLeft 2s linear infinite;
+        animation-delay: 0s;
+      }
+
+      .circle:nth-child(2) {
+        top: 0;
+        right: 0;
+        animation: moveFromTopRight 2s linear infinite;
+        animation-delay: 0.2s;
+      }
+
+      .circle:nth-child(3) {
+        bottom: 0;
+        left: 0;
+        animation: moveFromBottomLeft 2s linear infinite;
+        animation-delay: 0.4s;
+      }
+
+      .circle:nth-child(4) {
+        bottom: 0;
+        right: 0;
+        animation: moveFromBottomRight 2s linear infinite;
+        animation-delay: 0.6s;
+      }
+
+      .circle:nth-child(5) {
+        top: 50%;
+        left: 0;
+        animation: moveFromLeft 2s linear infinite;
+        animation-delay: 0.8s;
+      }
+
+      .circle:nth-child(6) {
+        top: 50%;
+        right: 0;
+        animation: moveFromRight 2s linear infinite;
+        animation-delay: 1s;
+      }
+
+      @keyframes moveFromTopLeft {
+        0% {
+          transform: translate(-60px, -60px);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+
+      @keyframes moveFromTopRight {
+        0% {
+          transform: translate(60px, -60px);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+
+      @keyframes moveFromBottomLeft {
+        0% {
+          transform: translate(-60px, 60px);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+
+      @keyframes moveFromBottomRight {
+        0% {
+          transform: translate(60px, 60px);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+
+      @keyframes moveFromLeft {
+        0% {
+          transform: translate(-60px, 0);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+
+      @keyframes moveFromRight {
+        0% {
+          transform: translate(60px, 0);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+
+      .text {
+        font-size: 20px;
+        color: #fff; /* White text */
+        font-weight: bold;
+        position: relative;
+        z-index: 1;
+        opacity: 0; /* Hide the text initially */
+        animation: zoomInOut 2s linear infinite; /* Add the animation */
+      }
+
+      @keyframes zoomInOut {
+        0% {
+          transform: scale(0.5);
+        }
+        50% {
+          transform: scale(1.5);
+        }
+        100% {
+          transform: scale(0.5);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loader">
+      <div class="circle" style="background-color: #ff69b4"></div>
+      <div class="circle" style="background-color: #ff69b4"></div>
+      <div class="circle" style="background-color: #ffff00"></div>
+      <div class="circle" style="background-color: #33cc33"></div>
+      <div class="circle" style="background-color: #0066ff"></div>
+      <div class="circle" style="background-color: #cc00ff"></div>
+      <span class="text">Devally</span>
+    </div>
+
+    <script>
+      let circles = document.querySelectorAll(".circle");
+      let text = document.querySelector(".text");
+
+      function checkCirclesMixed() {
+        let allCirclesMixed = true;
+        circles.forEach((circle) => {
+          if (
+            Math.abs(circle.getBoundingClientRect().left - 60) > 1 ||
+            Math.abs(circle.getBoundingClientRect().top - 60) > 1
+          ) {
+            allCirclesMixed = false;
+          }
+        });
+        if (allCirclesMixed) {
+          text.textContent = "Devally"; // Set the text content to "Devally"
+          text.style.opacity = 1; // Show the text when all circles are mixed
+        } else {
+          text.style.opacity = 1; // Hide the text when circles are not mixed
+        }
+      }
+
+      // Call the function every 100ms to check if the circles are mixed
+      setInterval(checkCirclesMixed, 100);
+    </script>
+  </body>
+</html>
