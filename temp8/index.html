@@ -1,0 +1,111 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Devally Loading Animation</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: black;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      color: #00BFFF;
+      overflow: hidden;
+    }
+    .loading-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .loading-text {
+      font-size: 24px;
+      letter-spacing: 2px;
+      opacity: 0;
+      animation: fadeInOut 3s infinite;
+    }
+    .loading-text:nth-child(2) {
+      animation-delay: 0s;
+    }
+    .loading-text:nth-child(3) {
+      animation-delay: 1s;
+    }
+    .loading-text:nth-child(4) {
+      animation-delay: 2s;
+    }
+    @keyframes fadeInOut {
+      0%, 100% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .music-note {
+      font-size: 40px;
+      animation: bounce 1s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+    .spinner {
+      position: absolute;
+      top: 10%;
+      width: 50px;
+      height: 50px;
+      border: 5px solid #00BFFF;
+      border-top: 5px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    .glow {
+      position: absolute;
+      top: 30%;
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, rgba(0,191,255,0.5), transparent);
+      border-radius: 50%;
+      animation: glow 2s infinite alternate;
+    }
+    @keyframes glow {
+      0% {
+        transform: scale(1);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(1.5);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="loading-container">
+    <div class="spinner"></div>
+    <div class="glow"></div>
+    <div class="music-note">🎵</div>
+    <div class="loading-text">Loading</div>
+    <div class="loading-text">Devally</div>
+    <div class="loading-text">Please Wait</div>
+  </div>
+</body>
+</html>
